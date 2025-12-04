@@ -1,0 +1,573 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>GigVerify — Dark Purple Theme</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg-0:#090712;
+      --bg-1:#0f0b1a;
+      --purple-1:#2b1760;
+      --purple-2:#46268f;
+      --accent:#8e6bff;     /* neon-ish accent */
+      --muted:#bfc3d6;
+      --card:#0f1220;
+      --glass: rgba(255,255,255,0.04);
+      --radius:14px;
+      --maxw:1180px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background:
+        radial-gradient(1200px 600px at 10% 10%, rgba(142,107,255,0.08), transparent 8%),
+        radial-gradient(900px 500px at 90% 80%, rgba(70,38,143,0.08), transparent 10%),
+        linear-gradient(180deg, var(--bg-0) 0%, var(--bg-1) 100%);
+      color:#fff;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .container{
+      max-width:var(--maxw);
+      margin:0 auto;
+      padding:28px;
+    }
+
+    /* Header */
+    header{
+      position:sticky;top:0;z-index:50;
+      background: linear-gradient(180deg, rgba(10,9,16,0.36), rgba(10,9,16,0.12));
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+    }
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+    .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:#fff}
+    .logo{
+      width:40px;height:40px;border-radius:10px;
+      background: linear-gradient(135deg,var(--purple-2),var(--accent));
+      display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;font-size:14px;
+      box-shadow:0 10px 30px rgba(70,38,143,0.28), inset 0 -6px 30px rgba(0,0,0,0.25);
+    }
+    .brand .title{font-weight:800;letter-spacing:0.2px;font-size:20px}
+    .brand .subtitle{font-size:12px;color:var(--muted);font-weight:600;margin-top:2px}
+
+    nav ul{display:flex;gap:18px;align-items:center;margin:0;padding:0;list-style:none}
+    nav a{
+      color:var(--muted);
+      text-decoration:none;
+      font-weight:600;
+      font-size:14px;
+      padding:8px 10px;border-radius:10px;
+    }
+    nav a:hover{color:var(--accent);background:rgba(142,107,255,0.04)}
+
+    .nav-cta{display:flex;gap:10px;align-items:center}
+    .btn{
+      border:0;padding:10px 14px;border-radius:12px;font-weight:700;cursor:pointer;
+      box-shadow:0 8px 24px rgba(10,9,16,0.6);
+    }
+    .btn-ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,0.04)}
+    .btn-primary{
+      background:linear-gradient(90deg,var(--accent),#5f4bff);
+      color:var(--bg-1);
+      padding:10px 16px;border-radius:12px;
+      box-shadow:0 10px 40px rgba(142,107,255,0.18);
+    }
+    .hamburger{display:none;width:44px;height:44px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);align-items:center;justify-content:center;background:transparent;cursor:pointer}
+
+    /* Hero */
+    .hero{
+      display:grid;
+      grid-template-columns:1fr 520px;
+      gap:36px;
+      align-items:center;
+      padding:64px 0;
+    }
+
+    .hero-left h1{
+      margin:0 0 12px 0;
+      font-size:48px;
+      line-height:1.02;
+      letter-spacing:-0.6px;
+      color:#fff;
+      font-weight:800;
+      text-shadow: 0 6px 30px rgba(70,38,143,0.12);
+    }
+    .hero-left h1 .accent{color:var(--accent)}
+    .sub{
+      color:var(--muted);
+      margin-bottom:22px;
+      font-weight:500;
+      max-width:640px;
+    }
+
+    .cta-row{display:flex;gap:12px;align-items:center}
+    .cta-primary{background:linear-gradient(90deg,var(--accent),#6a57ff);color:var(--bg-1);padding:12px 20px;border-radius:12px;font-weight:800;border:0;box-shadow:0 18px 50px rgba(86,60,255,0.12)}
+    .cta-outline{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px 16px;border-radius:12px;color:var(--muted);font-weight:700}
+
+    .hero-right{
+      position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .floating-card{
+      width:100%;
+      max-width:520px;
+      border-radius:22px;
+      padding:22px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      box-shadow: 0 40px 120px rgba(11,8,22,0.6);
+      border: 1px solid rgba(255,255,255,0.03);
+      overflow:visible;
+    }
+    /* abstract 3d shapes */
+    .shapes{
+      position:absolute;right:-10px;top:-10px;width:520px;height:360px;pointer-events:none;
+      filter:drop-shadow(0 40px 80px rgba(86,60,255,0.22));
+      will-change:transform,opacity;
+    }
+
+    /* Dots / indicators */
+    .dots{display:flex;gap:8px;justify-content:flex-start;margin-top:22px}
+    .dots span{height:8px;width:8px;border-radius:8px;background:rgba(255,255,255,0.06)}
+    .dots span.active{width:28px;background:linear-gradient(90deg,var(--accent),#5f4bff)}
+
+    /* clients row */
+    .clients{margin-top:44px;text-align:center;opacity:0.9}
+    .clients p{color:var(--muted);font-weight:600;margin-bottom:14px}
+    .client-logos{display:flex;gap:20px;align-items:center;justify-content:center;flex-wrap:wrap}
+    .client-logos .logo-sm{height:34px;width:96px;border-radius:8px;background:linear-gradient(180deg,rgba(255,255,255,0.02), rgba(255,255,255,0.01));display:flex;align-items:center;justify-content:center;color:var(--muted);font-weight:700;border:1px solid rgba(255,255,255,0.02)}
+
+    /* features */
+    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px}
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:14px;padding:22px;border:1px solid rgba(255,255,255,0.03);
+      box-shadow: 0 12px 40px rgba(11,8,22,0.45);
+      text-align:left;
+    }
+    .card .icon{
+      height:56px;width:56px;border-radius:12px;display:inline-flex;align-items:center;justify-content:center;margin-bottom:12px;
+      background:linear-gradient(135deg,var(--accent),#5f4bff);color:#090712;font-weight:800;
+      box-shadow:0 10px 30px rgba(86,60,255,0.12);
+    }
+    .card h4{margin:6px 0 10px 0;color:#fff}
+    .card p{margin:0;color:var(--muted);font-weight:500;font-size:14px}
+
+    footer{margin-top:48px;padding:28px 0;color:var(--muted);text-align:center}
+
+    /* responsive */
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr; padding:48px 0}
+      nav ul{display:none}
+      .hamburger{display:flex}
+      .hero-left h1{font-size:36px}
+      .hero-right{order:2}
+      .features{grid-template-columns:repeat(2,1fr)}
+      .shapes{position:relative;right:auto;top:auto;margin-top:20px}
+    }
+    @media (max-width:560px){
+      .features{grid-template-columns:1fr}
+      .brand .subtitle{display:none}
+      .container{padding:18px}
+      .hero-left h1{font-size:28px}
+    }
+
+    /* mobile drawer */
+    .drawer{
+      position:fixed;right:14px;top:72px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:12px;padding:12px 14px;box-shadow:0 30px 80px rgba(10,9,16,0.6);display:none;flex-direction:column;gap:8px;min-width:220px;border:1px solid rgba(255,255,255,0.03);
+    }
+    .drawer a{color:#fff;text-decoration:none;padding:8px 6px;border-radius:8px;font-weight:700}
+    .drawer a.cta-getstarted{background:linear-gradient(90deg,var(--accent),#5f4bff);display:inline-block;padding:10px 12px;border-radius:8px;color:var(--bg-1);margin-top:6px}
+
+    /* subtle animated background blurs */
+    .bg-orb{
+      position:absolute;left:-10%;top:-10%;width:520px;height:520px;border-radius:50%;
+      background: radial-gradient(circle at 30% 30%, rgba(142,107,255,0.12), rgba(70,38,143,0.06) 35%, transparent 60%);
+      filter: blur(60px);pointer-events:none;mix-blend-mode:screen;
+    }
+
+    /* Registration form styles (black & purple theme) */
+    .form-section{margin-top:28px;padding:18px;background:linear-gradient(180deg, rgba(15,7,26,0.6), rgba(10,6,20,0.6));border-radius:12px;border:1px solid rgba(70,38,143,0.08)}
+    .reg-form{max-width:620px;margin:0 auto;display:flex;flex-direction:column;gap:4px}
+    /* Stack form fields vertically with minimal spacing */
+    .form-row{display:flex;flex-direction:column;gap:4px}
+    .input, .select{padding:14px;border-radius:10px;border:1px solid rgba(142,107,255,0.12);background:linear-gradient(180deg, rgba(15,7,26,0.6), rgba(43,23,96,0.4));color:#fff}
+    .input::placeholder{color:rgba(255,255,255,0.5)}
+    .select{width:100%}
+    /* compact option spacing for dropdown (may vary by OS/browser) */
+    .select option{padding:4px 6px}
+    /* Ensure native dropdown options are readable on dark theme */
+    .select option{background:linear-gradient(180deg,#2b1760,#4b2b8f);color:#fff;padding:6px}
+    .select optgroup{color:#e6dbff}
+    /* For disabled placeholder option */
+    .select option[disabled]{color:rgba(255,255,255,0.5)}
+    .input{flex:1}
+    .btn-submit{background:linear-gradient(90deg,var(--purple-2),var(--accent));color:#fff;font-weight:800;border:0;padding:12px 20px;border-radius:10px;cursor:pointer;box-shadow:0 10px 30px rgba(70,38,143,0.28)}
+    @media (max-width:560px){.form-row{flex-direction:column}.select{width:100%}}
+
+    /* Modal styles (dark purple card) */
+    .modal-overlay{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.65));z-index:120}
+    .modal{width:640px;max-width:96%;min-height:420px;background:linear-gradient(180deg, rgba(43,23,96,0.95), rgba(15,7,26,0.98));border-radius:12px;padding:20px;border:1px solid rgba(142,107,255,0.08);box-shadow:0 40px 140px rgba(15,7,26,0.9);position:relative;color:#fff}
+    .modal-close{position:absolute;right:12px;top:10px;background:transparent;border:1px solid rgba(142,107,255,0.12);color:#fff;font-size:18px;line-height:18px;width:34px;height:34px;border-radius:8px;cursor:pointer}
+
+    /* Profile dropdown menu */
+    .profile-menu{position:absolute;right:28px;top:60px;min-width:220px;background:linear-gradient(180deg, rgba(43,23,96,0.98), rgba(15,7,26,0.98));border:1px solid rgba(142,107,255,0.08);border-radius:10px;padding:8px;display:none;flex-direction:column;gap:6px;z-index:140;box-shadow:0 20px 60px rgba(15,7,26,0.8)}
+    .profile-menu a{color:#fff;text-decoration:none;padding:8px 10px;border-radius:8px;font-weight:700}
+    .profile-menu a:hover{background:linear-gradient(90deg,var(--purple-2),var(--accent));color:#fff}
+    @media (max-width:980px){.profile-menu{right:12px;top:68px;min-width:180px}}
+
+  </style>
+</head>
+<body>
+  <div class="bg-orb" aria-hidden="true"></div>
+
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#">
+        <div class="logo">🛡️</div>
+        <div>
+          <div class="title">Gig Guard</div>
+        </div>
+      </a>
+
+      <nav>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#dashboard">Dashboard</a></li>
+          <li><a href="#" id="startLink">Start as a Worker</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-cta">
+        <button class="btn btn-primary" id="profileBtn" aria-haspopup="true" aria-expanded="false">My Profile</button>
+
+        <!-- Profile dropdown menu (hidden by default) -->
+        <div class="profile-menu" id="profileMenu" aria-hidden="true">
+          <a href="#earnings">1. Earnings</a>
+          <a href="#connected">2. Connected Platforms</a>
+          <a href="#ratings">3. Ratings</a>
+          <a href="#disputes">4. Disputes</a>
+          <a href="#reports">5. Reports</a>
+          <a href="#support">6. Support</a>
+          <a href="#settings">7. Settings</a>
+        </div>
+
+        <button class="hamburger" id="hambtn" aria-label="menu">
+          <svg width="18" height="12" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="18" height="2" rx="1" fill="#fff"/><rect y="5" width="18" height="2" rx="1" fill="#fff"/><rect y="10" width="18" height="2" rx="1" fill="#fff"/></svg>
+        </button>
+      </div>
+
+      <div class="drawer" id="drawer" role="menu" aria-hidden="true">
+        <a href="#home">Home</a>
+        <a href="#dashboard">Dashboard</a>
+        <a href="#" id="drawerStart">Start as a Worker</a>
+        <a href="#" id="drawerProfile" class="cta-getstarted">My Profile</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" id="home">
+    <section class="hero" aria-label="Hero">
+      <div class="hero-left">
+        <h1>Transparency for gig workers<br><span class="accent">Reclaim your earnings & rights</span></h1>
+        <div class="sub">Neutral verification, audit timelines, and exportable evidence — designed to hold platforms accountable without exposing trade secrets.</div>
+
+        <div class="cta-row">
+          <button class="cta-primary" onclick="location.href='#verify'">Verify Earnings</button>
+          <button class="cta-outline" onclick="location.href='#rights'">Know Your Rights</button>
+        </div>
+
+        <div class="dots" aria-hidden="true">
+          <span class="active"></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+
+      <div class="hero-right" aria-hidden="true">
+        <div class="floating-card" role="img" aria-label="abstract dashboard illustration">
+          <!-- lightweight abstract composition: 3D-esque shapes in svg -->
+          <svg class="shapes" viewBox="0 0 520 360" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+            <defs>
+              <linearGradient id="pgrad" x1="0" x2="1">
+                <stop offset="0" stop-color="#a98bff" stop-opacity="1"/>
+                <stop offset="1" stop-color="#5f4bff" stop-opacity="1"/>
+              </linearGradient>
+              <radialGradient id="orb" cx="50%" cy="30%">
+                <stop offset="0" stop-color="#f0ecff" stop-opacity="0.95"/>
+                <stop offset="1" stop-color="#b9a8ff" stop-opacity="0.6"/>
+              </radialGradient>
+              <filter id="soft" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stdDeviation="10" result="b"/>
+                <feBlend in="SourceGraphic" in2="b"/>
+              </filter>
+              <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stdDeviation="18" result="g"/>
+                <feMerge>
+                  <feMergeNode in="g"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
+            </defs>
+
+            <!-- big purple cube -->
+            <g transform="translate(40,20) rotate(-8)">
+              <rect x="160" y="40" width="120" height="120" rx="14" fill="url(#pgrad)" opacity="1" style="filter:url(#glow);stroke:#cfc6ff;stroke-opacity:0.06"/>
+              <rect x="130" y="80" width="120" height="120" rx="14" fill="#5a3fbf" opacity="0.98" transform="skewX(-18)"/>
+              <path d="M160 40 L220 10 L320 50 L260 80 Z" fill="#8e6bff" opacity="1"/>
+            </g>
+
+            <!-- ring -->
+            <g transform="translate(250,150)">
+              <ellipse rx="70" ry="28" fill="none" stroke="rgba(142,107,255,0.18)" stroke-width="14" transform="rotate(-18)"/>
+            </g>
+
+            <!-- small orbs -->
+            <circle cx="430" cy="80" r="28" fill="url(#orb)" opacity="1"/>
+            <circle cx="470" cy="180" r="18" fill="#8e6bff" opacity="0.95"/>
+            <circle cx="360" cy="260" r="22" fill="#5a3fbf" opacity="0.98"/>
+
+            <!-- small dashboard window -->
+            <rect x="40" y="200" rx="12" width="220" height="110" fill="#17122b" stroke="#3a2950" stroke-opacity="0.22"/>
+            <rect x="56" y="218" rx="6" width="72" height="12" fill="#23163a" />
+            <rect x="56" y="238" rx="6" width="150" height="8" fill="#372a53" />
+            <rect x="56" y="252" rx="6" width="120" height="8" fill="#372a53" />
+            <rect x="200" y="218" rx="6" width="36" height="36" fill="url(#pgrad)" style="stroke:#d9ccff;stroke-opacity:0.06" />
+          </svg>
+
+          <!-- small content inside card to convey dashboard feel -->
+        </div>
+      </div>
+    </section>
+
+    <section class="clients" aria-label="Our Clients">
+      <p>Trusted by platforms & advocates</p>
+    </section>
+
+    <section id="dashboard" aria-label="Features">
+      <h3 style="text-align:center;margin-top:28px;color:#fff;">Manage your worker profile — audits & evidence</h3>
+      <p style="text-align:center;color:var(--muted);margin-top:6px">Verify payouts, record deactivation timelines, and download a neutral report for disputes.</p>
+
+      <div class="features" style="margin-top:20px">
+        <div class="card">
+          <div class="icon">E</div>
+          <h4>Verify Earnings</h4>
+          <p>Upload pay statements or screenshots and our tool flags missing bonuses and unmatched payouts.</p>
+        </div>
+
+        <div class="card">
+          <div class="icon">A</div>
+          <h4>Audit Deactivations</h4>
+          <p>Timestamped logs, event snapshots, and a timeline export to support appeals or mediations.</p>
+        </div>
+
+        <div class="card">
+          <div class="icon">R</div>
+          <h4>Know Your Rights</h4>
+          <p>Localized guides, escalation steps, and templates for complaints to file with regulators or unions.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="verify" style="margin-top:36px">
+      <div style="display:flex;gap:18px;align-items:center;flex-wrap:wrap">
+        <div style="flex:1;min-width:260px;background:linear-gradient(180deg, rgba(142,107,255,0.04), rgba(70,38,143,0.02));padding:20px;border-radius:12px;box-shadow:0 30px 80px rgba(70,38,143,0.08);border:1px solid rgba(255,255,255,0.03)">
+          <h4 style="margin:0 0 8px 0;color:#fff">Start verification</h4>
+          <p style="margin:0;color:var(--muted)">Upload your payout statements (screenshots or PDFs) and get a neutral, exportable verification report.</p>
+          <div style="margin-top:12px">
+            <button class="btn" style="background:transparent;border:1px dashed rgba(255,255,255,0.06);padding:10px 12px;border-radius:10px;color:var(--muted)" onclick="alert('Demo: upload flow would open here.')">Upload now</button>
+          </div>
+        </div>
+
+        <div style="flex:1.2;min-width:220px">
+          <div style="background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:12px;box-shadow:0 26px 70px rgba(11,8,22,0.5);border:1px solid rgba(255,255,255,0.03)">
+            <h4 style="margin:0 0 6px 0;color:#fff">Quick Audit</h4>
+            <p style="margin:0;color:var(--muted)">Automatic checks for missing bonuses and simple expected vs paid calculations.</p>
+            <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+              <div style="padding:10px;border-radius:8px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.02);color:var(--muted)">Earnings</div>
+              <div style="padding:10px;border-radius:8px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.02);color:var(--muted)">Deactivation Log</div>
+              <div style="padding:10px;border-radius:8px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.02);color:var(--muted)">Export PDF</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Registration modal (hidden by default) -->
+    <div class="modal-overlay" id="startModal" aria-hidden="true" style="display:none">
+      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <button class="modal-close" id="modalClose" aria-label="Close">×</button>
+        <h3 id="modalTitle" style="margin:0 0 8px 0;color:#fff">Start as a Worker</h3>
+        <p style="margin:0;color:var(--muted);margin-bottom:12px">Register to get started on the platform.</p>
+
+        <form id="workerForm" onsubmit="return false;">
+          <div class="form-row">
+            <input class="input" id="name" name="name" type="text" placeholder="Full name" required />
+          </div>
+
+          <div class="form-row">
+            <input class="input" id="email" name="email" type="email" placeholder="Email address" required />
+          </div>
+
+          <div class="form-row">
+            <input class="input" id="phone" name="phone" type="tel" placeholder="Phone number" required />
+          </div>
+
+          <div class="form-row">
+            <input class="input" id="city" name="city" type="text" placeholder="City" required />
+          </div>
+
+          <div class="form-row">
+            <label for="platform" style="display:none">Platform</label>
+            <select class="select" id="platform" name="platform" required>
+              <option value="" disabled selected>Select platform</option>
+              <option value="swiggy">Swiggy</option>
+              <option value="zomato">Zomato</option>
+              <option value="rapido">Rapido</option>
+            </select>
+          </div>
+
+          <div style="display:flex;gap:12px;align-items:center;margin-top:8px">
+            <button class="btn-submit" id="submitBtn">Register</button>
+            <div id="formMsg" style="color:var(--muted)"></div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <section id="rights" style="margin-top:28px">
+      <div style="display:flex;gap:18px;align-items:center;flex-wrap:wrap">
+        <div style="flex:1;min-width:260px">
+          <h4 style="margin:0 0 10px 0;color:#fff">Know Your Rights</h4>
+          <p style="margin:0;color:var(--muted)">Short guides, complaint templates, and steps to file appeals or escalate when applicable.</p>
+        </div>
+        <div style="flex:1;min-width:200px;background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.03)">
+          <div style="font-weight:700;color:var(--muted)">Need urgent help?</div>
+          <div style="margin-top:8px;color:#fff">Chat with volunteers and community advocates</div>
+          <div style="margin-top:12px">
+            <button class="btn btn-primary" onclick="alert('Open help chat - demo')">Get Help</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div style="max-width:900px;margin:18px auto 0 auto">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+          <div style="font-weight:800;color:#fff">Gig Guard</div>
+          <div style="color:var(--muted)">© <span id="yr"></span> Gig Guard — helping gig workers get fair treatment</div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // set year in footer
+    document.getElementById('yr').textContent = new Date().getFullYear();
+
+    // mobile drawer toggle
+    const hambtn = document.getElementById('hambtn');
+    const drawer = document.getElementById('drawer');
+    let open = false;
+    hambtn && hambtn.addEventListener('click', (e)=>{
+      open = !open;
+      drawer.style.display = open ? 'flex' : 'none';
+      drawer.setAttribute('aria-hidden', open ? 'false' : 'true');
+    });
+
+    // Close drawer on outside click
+    document.addEventListener('click', (e)=>{
+      if(!open) return;
+      const isInside = e.target.closest('.drawer') || e.target.closest('.hamburger');
+      if(!isInside){
+        open = false;
+        drawer.style.display='none';
+        drawer.setAttribute('aria-hidden','true');
+      }
+    });
+
+    // Modal open/close for Start as a Worker
+    (function startModal(){
+      const overlay = document.getElementById('startModal');
+      const startLink = document.getElementById('startLink');
+      const drawerStart = document.getElementById('drawerStart');
+      const closeBtn = document.getElementById('modalClose');
+      if(!overlay) return;
+      function openModal(){ overlay.style.display='flex'; overlay.setAttribute('aria-hidden','false'); const first = overlay.querySelector('input'); first && first.focus(); }
+      function closeModal(){ overlay.style.display='none'; overlay.setAttribute('aria-hidden','true'); }
+      startLink && startLink.addEventListener('click', (e)=>{ e.preventDefault(); openModal(); });
+      drawerStart && drawerStart.addEventListener('click', (e)=>{ e.preventDefault(); drawer.style.display='none'; drawer.setAttribute('aria-hidden','true'); openModal(); });
+      closeBtn && closeBtn.addEventListener('click', closeModal);
+      overlay.addEventListener('click', (e)=>{ if(e.target === overlay) closeModal(); });
+      document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeModal(); });
+    })();
+
+    // Profile menu open/close
+    (function profileMenu(){
+      const btn = document.getElementById('profileBtn');
+      const menu = document.getElementById('profileMenu');
+      const drawerProfile = document.getElementById('drawerProfile');
+      if(!menu || !btn) return;
+      function openMenu(){ menu.style.display='flex'; menu.setAttribute('aria-hidden','false'); btn.setAttribute('aria-expanded','true'); }
+      function closeMenu(){ menu.style.display='none'; menu.setAttribute('aria-hidden','true'); btn.setAttribute('aria-expanded','false'); }
+      btn.addEventListener('click',(e)=>{ e.stopPropagation(); const isOpen = menu.style.display === 'flex'; isOpen ? closeMenu() : openMenu(); });
+      drawerProfile && drawerProfile.addEventListener('click',(e)=>{ e.preventDefault(); drawer.style.display='none'; drawer.setAttribute('aria-hidden','true'); openMenu(); });
+      // close on outside click
+      document.addEventListener('click',(e)=>{ if(!menu.contains(e.target) && e.target !== btn) closeMenu(); });
+      // close on Escape
+      document.addEventListener('keydown',(e)=>{ if(e.key === 'Escape') closeMenu(); });
+      // stop clicks inside menu from closing when using links
+      menu.addEventListener('click', (e)=>{ e.stopPropagation(); });
+    })();
+
+    // Registration form handler
+    (function workerForm() {
+      const form = document.getElementById('workerForm');
+      const msg = document.getElementById('formMsg');
+      if(!form) return;
+      form.addEventListener('submit', (e)=>{
+        e.preventDefault();
+        const name = form.name.value.trim();
+        const email = form.email.value.trim();
+        const phone = form.phone.value.trim();
+        const city = form.city.value.trim();
+        const platform = form.platform.value;
+        const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if(!name || !emailRe.test(email) || !/\d{7,15}/.test(phone) || !city || !platform){
+          msg.textContent = 'Please complete all fields with valid values.';
+          return;
+        }
+        msg.textContent = 'Thanks — registration submitted (demo).';
+        form.reset();
+      });
+    })();
+
+    // hero dots animation
+    (function heroDots() {
+      const dots = document.querySelectorAll('.dots span');
+      let i = 0;
+      if(!dots.length) return;
+      setInterval(()=> {
+        dots.forEach(d=>d.classList.remove('active'));
+        dots[i].classList.add('active');
+        i = (i+1) % dots.length;
+      }, 3200);
+    })();
+  </script>
+</body>
+</html>
